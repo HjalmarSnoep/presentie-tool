@@ -1,0 +1,139 @@
+21651|MVI3B|Erdal Abiri|Young Balance|
+20075|MVI3A|Ashvith Arumuganathan|Quick Media|
+20606|MVI3B|Ashna Asarfi|Limitless|
+20618|MVI3B|Dianna Azizyan|Limitless|
+21486|MVI3B|Sabine van Bemmelen|Fresh Design|
+16243|MVI3A|Jip Bessem|Zeitgeist|
+13105|MVI3A|Boaz Blom|Quick Media|
+18712|MVI3A|Claudia Castro Machuca|Unheard Studio|
+21055|MVI3B|Tijme Dekker|Kume|
+17849|MVI3A|Tirza Dekker|Yin Young|
+19526|MVI3A|Dylan Delgado|Color Cloud|
+20711|MVI3A|Guido van Dijk|New ID|
+20770|MVI3B|Twan van den Elst|Remade|
+19878|MVI3B|Mauro Farnese|Braindead Development|
+20578|MVI3A|Yannick Frisart|WebGem|
+20162|MVI3A|Daniel Gotz|Color Cloud|
+20114|MVI3A|Bas de Groot|Yin Young|
+21520|MVI3B|Jair Groot|Young Balance|
+20073|MVI3B|Colin Harzing|Lemonslice|
+20660|MVI3B|Koen Hendriks|Kume|
+20559|MVI3A|Romy Hes|Dynamic Stories|
+20415|MVI3A|Jennifer Hoogeland|Dynamic Stories|
+21650|MVI3B|Tessa Janssen|OnWeb|
+21471|MVI3B|Justin Kessen|Ylabs|
+18889|MVI3B|Thomas Koster|Lemonslice|
+20764|MVI3A|Twan Meijer|New ID|
+21758|MVI3B|Angelina van Meijeren|OnWeb|
+21680|MVI3A|Damian Rensen|Zenway|
+21676|MVI3A|Thijs van Rijn|WebGem|
+20023|MVI3A|Tim Scheerman|Zenway|
+19646|MVI3B|Jolijn Schiphorst|Ylabs|
+14270|MVI3B|Robbin Schmidt|Funzige Designs|
+21755|MVI3A|Carensa Snijders|Unheard Studio|
+20367|MVI3B|Ravi Stil|Remade|
+20580|MVI3B|Liam Tanis|Funzige Designs|
+20499|MVI3B|Ysabella Vargas Reyes|Fresh Design|
+20378|MVI3A|Jurien Waijenberg|Zeitgeist|
+23741|MD2B|Beau van Aanholt|Yin Young|
+20524|MD2B|Tommy Abeling|TAP|
+22563|MD2B|Zveau Alwart|Remade|
+23333|MD2B|Jasper Andruszkiewicz||
+21866|MD3A|Yanick Assignon|Dynamic Stories|
+21188|MD3B|Desteney Bader|Ylabs|
+21897|MD3B|Tom van den Berg|OnWeb|
+20482|MD3B|Mauro Bertozzi|Remade|
+20326|MD3A|Stijn van Beugen|New ID|
+22238|MD3A|Shaif Bhaggoe|Dynamic Stories|
+19675|MD3B|Jesse Bijma|Braindead Development|
+19658|MD3B|Victor Bijvoets|Limitless|
+22257|MD2B|Simon Boerrigter|Ylabs|
+23179|MD2B|Peter Boersma|Remade|
+24380|MD2A|Isaac Santhagens|WebGem|
+21534|MD2A|Ilias Boulahtari|Unheard Studio|
+23899|MD2B|Jort Broekhof|Zeitgeist|
+18735|MD3A|Quenten Brouwer|Zeitgeist|
+20803|MD3A|Gerwin Chan|Quick Media|
+22333|MD2B|Luuk Chattillon|Zeitgeist|
+21890|MD3B|Nick Deenik|Young Balance|
+23567|MD2B|Jur Dekker|OnWeb|
+23669|MD2A|Link Dichiara|Color Cloud|
+22793|MD2A|Bas Donjacour|Dynamic Stories|
+20670|MD3B|Rowy Donker|Young Balance|
+22951|MD2B|Mark van Dooremaal|Fresh Design|
+23924|MD2A|Luc Drenth||
+21892|MD3A|Floris Droppert|New ID|
+22711|MD2B|Stef van Egmond|OnWeb|
+21319|MD3B|Willem Elfring|Funzige Designs|
+21398|MD3A|Ramy Elsayed|Unheard Studio|
+14415|MD2A|Noah Falan|New ID|
+21592|MD3A|Coen Filipsen|WebGem|
+22937|MD2B|Cas Foole||
+24011|MD2A|Patrick Frumau|WebGem|
+22236|MD2B|Arthur Gonzalez Martinez|TAP|
+17917|MD2B|Job Groen|OnWeb|
+23984|MD2A|Rick Hinfelaar|Yin Young|
+15497|MD2A|Nick Hordijk|Yin Young|
+19698|MD3B|Jay van der Horst|Lemonslice|
+18233|MD3B|Tristan Huijsman||
+20840|MD3A|Dzabir Husovic|Zenway|
+23215|MD2A|Jesse Izeboud|Dynamic Stories|
+21960|MD2A|Maurice de Jong|WebGem|
+22683|MD2A|Bart de Jong|Young Balance|
+22722|MD2B|Dani de Jong|Fresh Design|
+24017|MD2A|Jesse de Jong|Kume|
+22617|MD2B|Maarten Kampmeijer|Remade|
+20993|MD3A|Karahan Kasirga|Unheard Studio|
+22720|MD2A|Harun van der Keur|Yin Young|
+19746|MD3B|Jelle Kitzen|Ylabs|
+22894|MD2A|Dali Klaassen|New ID|
+20502|MD3A|Indy Koning|Color Cloud|
+20448|MD3B|Miguel Korn|Braindead Development|
+22288|MD2A|Joshua van 't Kruis|Zenway|
+22207|MD2B|Justin van der Kruit|Limitless|
+20313|MD2B|Pepijn Kruiver|Ylabs|
+22320|MD2B|Gianni Kuipers||
+19936|MD3A|Wesly Lodewijks|Quick Media|
+23506|MD2A|Soufiane Loukan|Zenway|
+22406|MD2A|Nick Meijer|Unheard Studio|
+14511|MD2A|Wesley Mennens|Lemonslice|
+21869|MD3B|Luuk Mesker|Lemonslice|
+22045|MD2A|Bart Middelberg|Dynamic Stories|
+20538|MD3B|Naomi Morales Vasquez|Braindead Development|
+22796|MD2A|Frank Muhren|Zeitgeist|
+19940|MD3B|Sjaak Nijland|Funzige Designs|
+23136|MD2A|Menouer Nobach|Quick Media|
+21296|MD3B|Menno van Noort|OnWeb|
+20112|MD2A|Marly Noughient||
+22315|MD2A|Cem den Ouden|New ID|
+20279|MD3B|Nanko Prinzhorn|Remade|
+19830|MD3B|Tom Reus|Kume|
+21814|MD3A|Amin Robleh|Zeitgeist|
+24868|MG2B|Roy Oosterlee|OnWeb|
+22455|MD2A|Jordi Roodenburg|New ID|
+23976|MD2A|Juul de Rooij|Kume|
+19199|MD3A|Dave van Rossum||
+22062|MD2A|Nick Ruigrok|Color Cloud|
+20466|MD3A|Jordy Sadjari|Yin Young|
+23242|MD2A|Hicham Sahla|Unheard Studio|
+18510|MD3A|Chris Salinas Soto|Zenway|
+22670|MD2B|Pepijn Scheer|TAP|
+23250|MD2A|Rowin Schmidt|Young Balance|
+19844|MD3A|Koen Schutte|Color Cloud|
+22786|MD2B|Rico Schwab|Limitless|
+21674|MD2B|Martijn Smit|Funzige Designs|
+18499|MD3B|Joey Steffens|Limitless|
+21281|MD3B|Stefan Stekelenburg|Fresh Design|
+22263|MD2A|Kevin Streekstra|Kume|
+24370|MD2B|Dylan Struik|OnWeb|
+23519|MD2B|Zahra Torensma|Braindead Development|
+20969|MD3B|Lucas Veerman|Kume|
+21240|MD3B|Frank van der Velde|Fresh Design|
+22810|MD2A|Reinier van der Velden|Young Balance|
+22498|MD2A|Max Verhaagen|Unheard Studio|
+23905|MD2B|Bart Versteegen|Lemonslice|
+19941|MD3A|Nino van der Vinden|Yin Young|
+23659|MD2A|Melissa Vriend|Quick Media|
+21248|MD3B|Bas Vugts|Ylabs|
+18701|MD3A|Rick Woltheus|WebGem|
+20072|MD2B|Jeffrey Zschottche|Braindead Development|
