@@ -26,6 +26,7 @@
 	//  this last one is detectable in principle, but currently breaks the code. (Karahan!)
 		// it might be possible to track the mac-adress to prevent this from being a problem.
 		// we could take the user-agent out of the loop if this works.
+	date_default_timezone_set('Europe/Oslo');
 
 	filter_var_array($_REQUEST, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH|FILTER_FLAG_STRIP_BACKTICK); // sanitize all in REQUEST as string!
 	
@@ -85,6 +86,7 @@
 	}
 	.warning{
 		padding: 15px;
+		width: 100%;
 		background-color: rgba(255,0,0,0.7);
 		color: #fff;
 		position: fixed;
@@ -97,10 +99,14 @@
 			background-color: #888;
 			color: #fff;
 	}
+	.unknown{
+		background-color: #ccc;
+		padding: 0px 10px;
+	}
 	.bad{
 		background-color: #753935;
 		padding: 0px 15px;
-		color: #1d0e0d;
+		color: #ffeedd;
 	}
 	.good{
 		background-color: #85c06f;
@@ -175,28 +181,7 @@
 	
 	$unr="";
 	if(isset($_REQUEST["unr"])) $unr=preg_replace("/[^a-zA-Z0-9]+/", "", $_REQUEST["unr"]);
-	$scr="";
-	if(isset($_REQUEST["scr"])) $scr=preg_replace("/[^a-zA-Z0-9]+/", "", $_REQUEST["scr"]);
-	$avf="";
-	if(isset($_REQUEST["avf"])) $avf=$_REQUEST["avf"];
-	$ffp="";
-	if(isset($_REQUEST["ffp"])) $ffp=$_REQUEST["ffp"];
-	$nva="";
-	if(isset($_REQUEST["nva"])) $nva=$_REQUEST["nva"];
-	$nvc="";
-	if(isset($_REQUEST["nvc"])) $nvc=$_REQUEST["nvc"];
-	$nvp="";
-	if(isset($_REQUEST["nvp"])) $nvp=$_REQUEST["nvp"];
-	$ffp="";
-	if(isset($_REQUEST["ffp"])) $ffp=$_REQUEST["ffp"];
-	$tzo="";
-	if(isset($_REQUEST["tzo"])) $tzo=$_REQUEST["tzo"];
-	$nvu="";
-	if(isset($_REQUEST["nvu"])) $nvu=$_REQUEST["nvu"];
-	$cfp="";
-	if(isset($_REQUEST["cfp"])) $nvu=$_REQUEST["cfp"];
-	$ts=0;
-	if(isset($_REQUEST["ts"])) $ts=((time())-intval($_REQUEST["ts"]));
+	
 	// get IP
 	$rad=$_SERVER['REMOTE_ADDR'];
 	$at_school=false;
@@ -205,29 +190,6 @@
 		$at_school=true;
 		// NOT AT SCHOOL!
 	}
-	$xff="";
-	if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $xff=$_SERVER['HTTP_X_FORWARDED_FOR'];
-	$cli="";
-	if(isset($_SERVER['HTTP_CLIENT_IP'])) $cli=$_SERVER['HTTP_CLIENT_IP'];
-	// get string geoip_asnum_by_name ( string $hostname )
-	// check if this user is known under a different name, to prevent second login.
-	
-	$fingerprint=""; // this is the cookie, so ignore for fingerprinting
-	$fingerprint.=$scr."|"; // screensize
-	$fingerprint.=$ffp."|"; // ffp =  available fonts.
-	$fingerprint.=$cfp."|"; // cfp, canvas fingerprint
-	$fingerprint.=$dnt."|"; // dont log from php.
-	$fingerprint.=$nva."|"; // agent from javascript
-	$fingerprint.=$nvc."|"; // client
-	$fingerprint.=$nvp."|"; // platform
-	$fingerprint.=$agent."|"; // user agent from php
-//	$fingerprint.=$hr."|"; // all headers // includes cookies, so we cannot use that for hardware fingerprinting.
-	$fingerprint.=$tzo."|"; // getTimezoneOffset
-	$fingerprint.=$nvu."|"; // user agent from javascript
-	$fingerprint.=$rad."|"; // REMOTE_ADDR from php (ip)
-	$fingerprint.=$xff."|"; // HTTP_X_FORWARDED_FOR
-	$fingerprint.=$cli; // client _ip if available
-	$fingerprint=hash ('sha512',$fingerprint);
 	
 	function setStat($msg)
 	{
@@ -244,7 +206,6 @@
 	$student_naam="";
 	$student_klas="";
 	$student_bedrijf="";
-	$pc_valid=false;
 	if(is_file($filename))
 	{
 		$leerlingen=file_get_contents($filename);
@@ -259,8 +220,7 @@
 				$student["klas"]=$t[1];
 				$student["naam"]=$t[2];
 				$student["bedrijf"]="---";
-				if( isset($t[3]) && $t[3]!="" )$student["bedrijf"]=$t[3];
-				 $pc_valid=true;
+				if( isset($t[3]) && $t[3]!="" ) $student["bedrijf"]=$t[3];
 				//echo $student["nr"]."==".$unr."<br>";
 				if($student["nr"]==$unr)
 				{
@@ -282,56 +242,52 @@
 		echo "Error: Je kunt nu niet present worden gezet.. ".date_create()->format("H:i:s a")." valt buiten schooluren.";
 		exit();
 	}
-	if($student_valid==true && $pc_valid==true && $at_school)
+	if($student_valid==true)
 	{
-		// found a matching student with postal code
-		echo "<h1>student: ".$unr." ".$student_naam." uit ".$student_klas." is nu present voor uur ".$uur." in lokaal ".$lok.".</h1>";
-
-		// check fingerprint!
-		/*$filename="data/". $fingerprint.".txt";
-		// try to open fingerprint file:
-		if(is_file($filename))
+		if($at_school)
 		{
-			$stored_unr=file_get_contents($filename);
-			//echo $stored_unr."==".$unr."<br>";
-			if($stored_unr!=($unr.""))
+			echo "<h1>student: ".$unr." ".$student_naam." uit ".$student_klas." is nu present voor uur ".$uur." in lokaal ".$lok.".</h1>";
+			$filename="data/".date_create()->format("Y-m-d")."_".$uur."_".$unr.".txt";
+			if(!is_file($filename))
 			{
-				echo "<hr>ERROR 2: <BR>WARNING: UNR mismatch ".$fingerprint."  -  ".$unr." neem contact op met Hjalmar..<hr>";
-				setStat("different unr stored (".$stored_unr.")");
-				exit();
+				// dit doet notificatie als je ECHT de eerste dit uur bent!
+				require_once("check_notification.php");
+				checkNotification($students,$uur,$student_naam);
 			}
+			file_put_contents ($filename,$lok."|1|".$seconden_in_uur); // put $unr present for this hour!
+			setStat("present at $lok"); // set present at lokaal!
 		}else{
-			file_put_contents ($filename,$unr); // associate $unr with this fingerprint.
-			setStat("create fingerprint (".$fingerprint.")");
-		}*/
-
-		$filename="data/".date_create()->format("Y-m-d")."_".$uur."_".$unr.".txt";
-		file_put_contents ($filename,$lok."|1|0|".$seconden_in_uur); // put $unr present for this hour, maar niet gezien door leerkracht.!
-		setStat("present at $lok"); // set present at lokaal!
-		require_once("set_highscore.php");
-		// dit zet een highscore, maar doet ook een notificatie..
-		setHighscore($unr,$uur,$seconden_in_uur);
-	}else{
-		if($at_school==false)
-		{
 			if(! isset($_REQUEST["date"]) )
 			{
 				echo "<div class='warning' onClick='hideElement(this)'>";
 				echo "Je lijkt niet op school te zijn? Je gebruikt niet de school WIFI.<br>";
 				echo "Je opgegeven lokatie: (".$lok.") zou dus moeten zijn: de reden waarom je er niet bent, bijvoorbeeld: 'ziek', of de plek waar je WEL bent, bijvoorbeeld: 'stage'.";
-				echo "</div>";
+				echo "<br>Klik op deze boodschap om hem te verbergen</div>";
 				setStat("not from school");
 				$filename="data/".date_create()->format("Y-m-d")."_".$uur."_".$unr.".txt";
-				file_put_contents ($filename,$lok."|0|0|".$seconden_in_uur); // put $unr present for this hour, maar niet gezien door leerkracht.!
+				if(!is_file($filename))
+				{
+					// dit doet notificatie als je ECHT de eerste dit uur bent!
+					require_once("check_notification.php");
+					checkNotification($students,$uur,$student_naam);
+				}
+				file_put_contents ($filename,$lok."|0|".$seconden_in_uur); // put $unr present for this hour!
+				
+				
 				setStat("present at $lok"); // set present at lokaal!
 			}
 			// ik gaf aan: wel op stage of ziek ofzo..
 			// mogen ze aangeven.
-//			exit();
 		}
-//		echo "<h1 class='bad'>No Match for $unr </h1>";
-//		setStat("no_match");
 	}
+	
+
+
+	
+	//  ___  ____   __    ____  ____    ____   __    ____  __    ____ 
+	// / __)(_  _) /__\  (  _ \(_  _)  (_  _) /__\  (  _ \(  )  ( ___)
+	// \__ \  )(  /(__)\  )   /  )(      )(  /(__)\  ) _ < )(__  )__) 
+	// (___/ (__)(__)(__)(_)\_) (__)    (__)(__)(__)(____/(____)(____)
 	// print table
 	$date=date_create()->format("Y-m-d");
 	$sort="klas";
@@ -362,7 +318,6 @@
 		echo "<header>";
 		echo "<h2>Presentie ".$date."</h2>";
 		echo "</header>";
-		// we might want to update every once in a while!
 	}
 	echo "<section>";
 
@@ -439,10 +394,11 @@
 			echo "<td>".substr($student["klas"],0,15)."</td>";
 			echo "<td>".$student["naam"]."</td>";
 			echo "<td>".$student["bedrijf"]."</td>";
-			$lokaal="---";
+			$lokaal="";
 			$student_has_been_present=false;
 			for($u=0;$u<8;$u++)
 			{
+				$score="";
 				$filename="data/".$date."_".($u+1)."_".$student["nr"].".txt";
 				$student_aanwezig=false;
 				$lokaal_from_file=false;
@@ -465,38 +421,48 @@
 							$student_aanwezig=false; // student mag zich ook AFWEZIG melden, door niet vanaf school te melden.
 						}
 					} 
-					if(isset($ar[2]) && $ar[2]) $gezien_door_leraar=true;
+					if(isset($ar[2]) && $ar[2]!=0) $score="<small><a href='highscores.php'>(+".$ar[2].")</a></small>";
 				}
 				$nowclass="";
 				if($uur==($u+1))
 					$nowclass=" now";
 				if($student_aanwezig)
 				{
-					echo "<td class='good$nowclass'>&#128065;".substr($lokaal,0,8)."</td>";
+					echo "<td class='good$nowclass'>&#128065;".substr($lokaal,0,8)." ".$score."</td>";
 				}else{
 					if($student_has_been_present)
 					{
 						if($student_aanwezig==false)
 						{
 							if($lokaal_from_file)
-								echo "<td class='bad$nowclass'>".substr($lokaal,0,8)."</td>";					
+								if($lokaal=="")
+								{
+									echo "<td class='unknown$nowclass'>".substr($lokaal,0,8)." ".$score."</td>";					
+								}else{
+									echo "<td class='bad$nowclass'>".substr($lokaal,0,8)." ".$score."</td>";					
+								}
 							else
 								echo "<td class='quite_good$nowclass'>".substr($lokaal,0,8)."?</td>";
 						}else{
 						}
 					}else{
-						echo "<td class='bad$nowclass'>".substr($lokaal,0,8)."</td>";						
+						if($lokaal=="")
+						{
+							echo "<td class='unknown$nowclass'>".substr($lokaal,0,8)." ".$score."</td>";					
+						}else{
+							echo "<td class='bad$nowclass'>".substr($lokaal,0,8)." </td>";						
+						}
 					}
 				}
 			}
-			echo "<td>".substr($lokaal,0,15)."</td>";
+			echo "<td>".substr($lokaal,0,25)."</td>";
 		echo "</tr>";
 	}
 	echo "</table>";
 	echo "</section>";
 ?>
 <audio id="snd">
-	<source src="bell.mp3"></source>
+	<source src="media/bell.mp3"></source>
 </audio>
 <script>
 document.getElementById("SortKlas").addEventListener("click",changeSort, false);
